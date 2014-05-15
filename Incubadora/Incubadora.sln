@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logica", "Logica\Logica.csproj", "{CBF5F74D-E165-4EAF-B752-6E5762D31CA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cliente", "Cliente\Cliente.csproj", "{180D6C9B-055D-4A61-A41B-1902E0E621EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBF5F74D-E165-4EAF-B752-6E5762D31CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF5F74D-E165-4EAF-B752-6E5762D31CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF5F74D-E165-4EAF-B752-6E5762D31CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF5F74D-E165-4EAF-B752-6E5762D31CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{180D6C9B-055D-4A61-A41B-1902E0E621EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{180D6C9B-055D-4A61-A41B-1902E0E621EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{180D6C9B-055D-4A61-A41B-1902E0E621EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{180D6C9B-055D-4A61-A41B-1902E0E621EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
