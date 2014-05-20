@@ -14,6 +14,9 @@ namespace Cliente
         public MostrarPedido()
         {
             InitializeComponent();
+
+
+
         }
     }
 }

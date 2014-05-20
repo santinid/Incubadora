@@ -17,6 +17,7 @@ namespace Cliente
 
         string animal ;
         int charola;
+
         public NuevoPedido()
         {
             InitializeComponent();
@@ -25,7 +26,6 @@ namespace Cliente
             fechaHoy();
             
         }
-
         void llenarComboCliente ()
         {
             cmbCliente.DataSource = Cliente.ObtenerListado() ;
@@ -144,10 +144,10 @@ namespace Cliente
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Logica.Nivel n = new Logica.Nivel();
-            n.IdNivel = cmbNivel.SelectedIndex;
            
-            string[] datos = n.Obtener().Split('|');
+            nivel.IdNivel = cmbNivel.SelectedIndex;
+           
+            string[] datos = nivel.Obtener().Split('|');
             charola = Convert.ToInt32(datos[1]);
 
             if (charola < 4)
@@ -161,8 +161,8 @@ namespace Cliente
                 i.Total = Convert.ToDouble(txtTotalPagar.Text);
                 i.IdNivel = Convert.ToInt32(cmbNivel.SelectedValue);
                 charola = charola + 1;
-                n.Charola = charola;
-                n.Modificar();
+                nivel.Charola = charola;
+                nivel.Modificar();
                 i.Agregar();
                 
                 MessageBox.Show("Registro Guardado");

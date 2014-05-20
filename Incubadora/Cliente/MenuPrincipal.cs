@@ -11,12 +11,14 @@ namespace Cliente
 {
     public partial class MenuPrincipal : Form
     {
-        
+        DateTime fechaparaValidar;
         DateTime fecha;
         int idn;
         int idi;
         int quitar = 0;
         Logica.Incubadora incubadora = new Logica.Incubadora();
+        Logica.Validar validar = new Logica.Validar();
+
         public MenuPrincipal()
         {
             InitializeComponent();
@@ -25,16 +27,22 @@ namespace Cliente
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
             eliminarCharola();
+
+
         }
         void eliminarCharola() 
         {
-            Logica.Incubadora i = new Logica.Incubadora();
-
             DateTime diahoy = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            List <Logica.Incubadora >  list = i.ObtenerIdNivel();
-            
+            String[] dato = validar.Obtener().Split('|');
+            fechaparaValidar = Convert.ToDateTime(dato[0]);
 
-
+           if (fechaparaValidar == diahoy)
+           {
+               MessageBox.Show("Bienvenido");
+           }
+               else
+               {
+            List <Logica.Incubadora >  list = incubadora.ObtenerIdNivel();
             foreach (Logica.Incubadora fechass in list )
             {
                 fecha = Convert .ToDateTime (fechass.FechaFinal);
@@ -53,10 +61,15 @@ namespace Cliente
                     n.IdNivel = idn;     
                     n.Charola = quitar  - n.Charola  ;
                     n.Modificar();
+                    validar.Fechavalida = diahoy ;
+                    validar.Modificar();
+                    MessageBox.Show("Bienvenido");
                     MessageBox.Show("Hoy hay nuevos nacimientos");
                     }
                 }       
-            } 
+              }
+               }
+           
         }
     
         private void nuevoToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -75,6 +88,12 @@ namespace Cliente
         {
             MostrarCliente mostrarc = new MostrarCliente();
             mostrarc.Show();
+        }
+
+        private void mostrarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            MostrarPedido  mostrarIncubadora = new MostrarPedido ();
+            mostrarIncubadora.Show();
         }
     }
 }

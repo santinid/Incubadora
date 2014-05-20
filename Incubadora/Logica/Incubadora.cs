@@ -292,7 +292,6 @@ namespace Logica
         }
         #endregion
 
-
         #region ObtenerListadoIdNivel
         public List<Incubadora> ObtenerIdNivel()
         {
@@ -327,40 +326,7 @@ namespace Logica
             return lista;
         }
         #endregion
-        
-
-        // no se si jale jejeje
-        //public string  ObtenerIdNivel()
-        //{
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand();
-        //        cmd.Connection = BaseDatos.conn;
-        //        cmd.CommandText = "SELECT Incubadora.FechaFinal, Incubadora.IdNivel, Nivel.Charola FROM Nivel INNER JOIN Incubadora ON Nivel.IdNivel = Incubadora.IdNivel";
-        //        cmd.Parameters.AddWithValue("@IdNivel", this.IdNivel );
-        //        BaseDatos.conn.Open();
-        //        SqlDataReader dr = cmd.ExecuteReader();
-        //        Incubadora i = new Incubadora() ;
-        //        while (dr.Read())
-        //        {
-                    
-        //            i.idNivel = Convert.ToInt32(dr["IdNivel"].ToString());
-        //            i.FechaFinal = Convert.ToDateTime(dr["FechaFinal"].ToString());
-        //            i.Charola = Convert.ToInt32(dr["Charola"].ToString());
-        //        }
-        //        BaseDatos.conn.Close();
-        //        return this.IdNivel  + "|" + this.FechaFinal  + "|" + this.Charola  ;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //    finally
-        //    {
-        //        BaseDatos.conn.Close();
-        //    }
-        //}
-        
+     
     }
 }
 
