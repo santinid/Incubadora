@@ -7,6 +7,7 @@ namespace Logica
 {
     public class ControlAnimal
     {
+        #region variables 
         int placa;
         string raza, sexo;
         DateTime fechaNacimiento;
@@ -34,5 +35,28 @@ namespace Logica
             get { return fechaNacimiento; }
             set { fechaNacimiento = value; }
         }
+        #endregion
+
+        #region metodo guardar
+
+
+        #endregion
+
+        #region metodo modificar
+
+
+        #endregion
+
+        #region metodo eliminar
+
+#endregion
+
+        #region obtener
+        
+        #endregion
+
+        #region obtener por id
+        
+        #endregion
     }
 }

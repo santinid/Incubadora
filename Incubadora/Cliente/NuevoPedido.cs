@@ -29,7 +29,7 @@ namespace Cliente
         void llenarComboCliente ()
         {
             cmbCliente.DataSource = Cliente.ObtenerListado() ;
-            cmbCliente.DisplayMember = "Nombre";
+            cmbCliente.DisplayMember = "NombreCompleto";
             cmbCliente.ValueMember = "IdCliente";
         }
         void llenarComboNivel()
@@ -178,6 +178,8 @@ namespace Cliente
         {
            
         }
+
+        
 
         
     }

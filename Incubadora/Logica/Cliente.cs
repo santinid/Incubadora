@@ -15,7 +15,13 @@ namespace Logica
             get { return idCliente; }
             set { idCliente = value; }
         }
-        string nombre, apellido;
+        string nombre, apellido, nombreCompleto;
+
+        public string NombreCompleto
+        {
+            get { return nombreCompleto; }
+            set { nombreCompleto = value; }
+        }
 
         public string Apellido
         {
@@ -62,8 +68,8 @@ namespace Logica
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "UPDATE Cliente SET IdCliente=@IdCliente,Nombre=@Nombre,Apellido=@Apellido WHERE IdCliente=@IdCliente";
-                cmd.Parameters.AddWithValue("@IdCliente", this.IdCliente);
+                cmd.CommandText = "UPDATE Cliente SET Nombre=@Nombre,Apellido=@Apellido WHERE IdCliente=@IdCliente";
+                cmd.Parameters.AddWithValue("@IdCliente", this.IdCliente );
                 cmd.Parameters.AddWithValue("@Nombre", this.Nombre);
                 cmd.Parameters.AddWithValue("@Apellido", this.Apellido);
                 BaseDatos.conn.Open();
@@ -144,7 +150,7 @@ namespace Logica
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT * FROM Cliente";
+                cmd.CommandText = "SELECT IdCliente, Nombre + ' ' + Apellido AS NombreCompleto FROM Cliente";
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 Cliente c;
@@ -152,8 +158,8 @@ namespace Logica
                 {
                     c = new Cliente();
                     c.IdCliente = Convert.ToInt32(dr["IdCliente"].ToString());
-                    c.Nombre = dr["Nombre"].ToString();
-                    c.Apellido = dr["Apellido"].ToString();
+                    c.NombreCompleto = dr["NombreCompleto"].ToString();
+                  
                     lista.Add(c);
                 }
                 BaseDatos.conn.Close();

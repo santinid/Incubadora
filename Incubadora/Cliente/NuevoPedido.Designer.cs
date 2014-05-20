@@ -244,6 +244,7 @@
             this.Name = "NuevoPedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Pedido";
+
             this.ResumeLayout(false);
             this.PerformLayout();
 

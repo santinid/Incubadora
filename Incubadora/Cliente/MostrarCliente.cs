@@ -12,7 +12,7 @@ namespace Cliente
     public partial class MostrarCliente : Form
     {
         Logica.Cliente cliente = new Logica.Cliente();
-
+        int id;
         public MostrarCliente()
         {
             InitializeComponent();
@@ -31,25 +31,36 @@ namespace Cliente
 
         private void Eliminar_Click(object sender, EventArgs e)
         {
-            Close();
+            cliente.IdCliente = id;
+            cliente.Eliminar();
+            MessageBox.Show("Registro Eliminado");
+            limpear();
+            llenargrid();
         }
 
-        
-
+        void limpear() 
+        {
+            txtApellido.Clear();
+            txtNombre.Clear();
+        }    
+    
         private void btnModificar_Click(object sender, EventArgs e)
         {
-          
+          cliente.IdCliente = id;
+          cliente.Nombre = txtNombre.Text;
+          cliente.Apellido = txtApellido.Text;
+          cliente.Modificar();
+          MessageBox.Show("Registro Modificado");
+          limpear();
+          llenargrid();
         }
 
-       
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            
-            txtNombre.Text = Convert.ToString(dgvClientes.Rows[1].Cells["Nombre"]);
-            
-            //txtApellido.Text = Convert.ToString(dgvClientes.Rows[0].Cells[1]);
+            id = Convert.ToInt32(dgvClientes[0, dgvClientes.CurrentCell.RowIndex].Value.ToString());
+         txtNombre.Text = dgvClientes[2, dgvClientes.CurrentCell.RowIndex].Value.ToString();               txtApellido.Text = dgvClientes[1, dgvClientes.CurrentCell.RowIndex].Value.ToString();    
         }
+
 
        
     }

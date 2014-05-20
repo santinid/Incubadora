@@ -13,7 +13,9 @@ namespace Logica
     {
         #region variables
         int idIncubadora, idCliente, idNivel, cantidadHuevos;
-        string tipoHuevo;
+        string tipoHuevo, nombreCompleto;
+
+       
         double total;
         DateTime fechaInicio, fechaFinal;   
        
@@ -57,6 +59,13 @@ namespace Logica
             get { return fechaFinal; }
             set { fechaFinal = value; }
         }
+
+        public string NombreCompleto
+        {
+            get { return nombreCompleto; }
+            set { nombreCompleto = value; }
+        }
+
         #endregion
 
         #region Agregar
@@ -97,7 +106,6 @@ namespace Logica
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
                 cmd.CommandText = "UPDATE Incubadora SET IdCliente=@IdCliente,CantidadHuevos=@CantidadHuevos,TipoHuevo=@TipoHuevo, FechaInicio=@FechaInicio, FechaFinal=@FechaFinal,Total=@Total,IdNivel=@IdNivel WHERE IdIncubadora=@IdIncubadora";
-                cmd.Parameters.AddWithValue("@IdIncubadora", this.IdIncubadora);
                 cmd.Parameters.AddWithValue("@IdCliente", this.IdCliente);
                 cmd.Parameters.AddWithValue("@CantidadHuevos", this.CantidadHuevos);
                 cmd.Parameters.AddWithValue("@TipoHuevo", this.TipoHuevo);
@@ -187,7 +195,7 @@ namespace Logica
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT * FROM Incubadora";
+                cmd.CommandText = "SELECT Incubadora.IdIncubadora, Incubadora.CantidadHuevos, Incubadora.TipoHuevo, Incubadora.FechaInicio, Incubadora.FechaFinal, Incubadora.Total, Incubadora.IdNivel, Incubadora.IdCliente,  Cliente.Nombre + ' ' + Cliente.Apellido AS NombreCompleto FROM Cliente INNER JOIN (Incubadora INNER JOIN Nivel ON Incubadora.IdNivel = Nivel.IdNivel) ON Incubadora.IdCliente = Cliente.IdCliente";
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 Incubadora i;
@@ -202,6 +210,7 @@ namespace Logica
                     i.FechaFinal = Convert.ToDateTime(dr["FechaFinal"].ToString());
                     i.Total = Convert.ToDouble(dr["Total"].ToString());
                     i.IdNivel = Convert.ToInt32(dr["IdNivel"].ToString());
+                    i.NombreCompleto  = dr["NombreCompleto"].ToString();
                     lista.Add(i);
                 }
                 BaseDatos.conn.Close();
@@ -219,14 +228,14 @@ namespace Logica
         #endregion
 
         #region ObternerListaPorIdCliente
-        public List<Incubadora> ObtenerListadoIdCliente()
+        public List<Incubadora> ObtenerListadoIdCliente(int validar)
         {
             List<Incubadora> lista = new List<Incubadora>();
             try
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT * FROM Incubadora WHERE IdCliente = @IdCliente";
+                cmd.CommandText = "SELECT Incubadora.IdIncubadora, Incubadora.CantidadHuevos, Incubadora.TipoHuevo, Incubadora.FechaInicio, Incubadora.FechaFinal, Incubadora.Total, Incubadora.IdNivel, Incubadora.IdCliente,  Cliente.Nombre + ' ' + Cliente.Apellido AS NombreCompleto FROM Cliente INNER JOIN (Incubadora INNER JOIN Nivel ON Incubadora.IdNivel = Nivel.IdNivel) ON Incubadora.IdCliente = Cliente.IdCliente WHERE Incubadora.IdCliente = Incubadora.IdCliente";
                 cmd.Parameters.AddWithValue("@IdCliente", this.IdCliente);
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -242,6 +251,7 @@ namespace Logica
                     i.FechaFinal = Convert.ToDateTime(dr["FechaFinal"].ToString());
                     i.Total = Convert.ToDouble(dr["Total"].ToString());
                     i.IdNivel = Convert.ToInt32(dr["IdNivel"].ToString());
+                    i.TipoHuevo = dr["NombreCompleto"].ToString();
                     lista.Add(i);
                 }
                 BaseDatos.conn.Close();
