@@ -41,6 +41,8 @@
             this.IdCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.lblFiltrar = new System.Windows.Forms.Label();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +61,7 @@
             this.FechaSalida,
             this.IdNivel,
             this.IdCliente});
-            this.dgvPedidos.Location = new System.Drawing.Point(12, 113);
+            this.dgvPedidos.Location = new System.Drawing.Point(12, 110);
             this.dgvPedidos.Name = "dgvPedidos";
             this.dgvPedidos.ReadOnly = true;
             this.dgvPedidos.Size = new System.Drawing.Size(745, 213);
@@ -133,30 +135,57 @@
             // cmbCliente
             // 
             this.cmbCliente.FormattingEnabled = true;
-            this.cmbCliente.Location = new System.Drawing.Point(125, 20);
+            this.cmbCliente.Items.AddRange(new object[] {
+            "TODOS"});
+            this.cmbCliente.Location = new System.Drawing.Point(191, 25);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(121, 21);
             this.cmbCliente.TabIndex = 1;
+            this.cmbCliente.SelectedIndexChanged += new System.EventHandler(this.cmbCliente_SelectedIndexChanged);
             // 
             // lblFiltrar
             // 
             this.lblFiltrar.AutoSize = true;
+            this.lblFiltrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFiltrar.Location = new System.Drawing.Point(13, 28);
             this.lblFiltrar.Name = "lblFiltrar";
-            this.lblFiltrar.Size = new System.Drawing.Size(106, 13);
+            this.lblFiltrar.Size = new System.Drawing.Size(172, 18);
             this.lblFiltrar.TabIndex = 2;
             this.lblFiltrar.Text = "Mostrar por Nombre: ";
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(682, 329);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
+            this.btnCerrar.TabIndex = 3;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(16, 69);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(95, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Mostrar Todos";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MostrarPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 368);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.lblFiltrar);
             this.Controls.Add(this.cmbCliente);
             this.Controls.Add(this.dgvPedidos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MostrarPedido";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mostrar Pedido";
             this.Load += new System.EventHandler(this.MostrarPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
@@ -179,6 +208,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdCliente;
         private System.Windows.Forms.ComboBox cmbCliente;
         private System.Windows.Forms.Label lblFiltrar;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button button1;
 
     }
 }

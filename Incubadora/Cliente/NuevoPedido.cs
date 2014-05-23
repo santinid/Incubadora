@@ -28,7 +28,7 @@ namespace Cliente
         }
         void llenarComboCliente ()
         {
-            cmbCliente.DataSource = Cliente.ObtenerListado() ;
+            cmbCliente.DataSource = Cliente.ObtenerListadoNombreCompleto() ;
             cmbCliente.DisplayMember = "NombreCompleto";
             cmbCliente.ValueMember = "IdCliente";
         }

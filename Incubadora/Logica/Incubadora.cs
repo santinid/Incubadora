@@ -235,8 +235,8 @@ namespace Logica
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT Incubadora.IdIncubadora, Incubadora.CantidadHuevos, Incubadora.TipoHuevo, Incubadora.FechaInicio, Incubadora.FechaFinal, Incubadora.Total, Incubadora.IdNivel, Incubadora.IdCliente,  Cliente.Nombre + ' ' + Cliente.Apellido AS NombreCompleto FROM Cliente INNER JOIN (Incubadora INNER JOIN Nivel ON Incubadora.IdNivel = Nivel.IdNivel) ON Incubadora.IdCliente = Cliente.IdCliente WHERE Incubadora.IdCliente = Incubadora.IdCliente";
-                cmd.Parameters.AddWithValue("@IdCliente", this.IdCliente);
+                cmd.CommandText = "SELECT Incubadora.IdIncubadora, Incubadora.CantidadHuevos, Incubadora.TipoHuevo, Incubadora.FechaInicio, Incubadora.FechaFinal, Incubadora.Total, Incubadora.IdNivel, Incubadora.IdCliente,  Cliente.Nombre + ' ' + Cliente.Apellido AS NombreCompleto FROM Cliente INNER JOIN (Incubadora INNER JOIN Nivel ON Incubadora.IdNivel = Nivel.IdNivel) ON Incubadora.IdCliente = Cliente.IdCliente WHERE Incubadora.IdCliente = @Validar AND  Cliente.IdCliente = @Validar";
+                cmd.Parameters.AddWithValue("@Validar", validar);
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 Incubadora i;
@@ -251,7 +251,7 @@ namespace Logica
                     i.FechaFinal = Convert.ToDateTime(dr["FechaFinal"].ToString());
                     i.Total = Convert.ToDouble(dr["Total"].ToString());
                     i.IdNivel = Convert.ToInt32(dr["IdNivel"].ToString());
-                    i.TipoHuevo = dr["NombreCompleto"].ToString();
+                    i.NombreCompleto = dr["NombreCompleto"].ToString();
                     lista.Add(i);
                 }
                 BaseDatos.conn.Close();

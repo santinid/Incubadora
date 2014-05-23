@@ -22,28 +22,50 @@ namespace Cliente
 
         void llenarComboCliente()
         {
-            cmbCliente.DataSource = Cliente.ObtenerListado();
+            cmbCliente.DataSource = Cliente.ObtenerListadoNombreCompleto();
             cmbCliente.DisplayMember = "NombreCompleto";
             cmbCliente.ValueMember = "IdCliente";
         }
 
         void llenarPorNombre()
         {
-            filtrar = cmbCliente.ValueMember;
-
-            dgvPedidos.DataSource = incubadora.ObtenerListadoIdCliente();
-        }
-
+            try
+            {
+                filtrar = Convert.ToInt32(cmbCliente.SelectedValue);
+                dgvPedidos.DataSource = incubadora.ObtenerListadoIdCliente(filtrar);
+            }
+            catch 
+            { 
+            }
+       }
+        
         void llenargridTodos()
-        {
+        { 
             dgvPedidos.DataSource = incubadora.ObtenerListado(); 
         }
 
-
+      
         private void MostrarPedido_Load(object sender, EventArgs e)
         {
+            
+                llenargridTodos();
+            
+        }
+
+        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+         
+             llenarPorNombre();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             llenargridTodos();
-  
         }
     }
 }

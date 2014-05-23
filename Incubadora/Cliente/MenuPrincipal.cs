@@ -95,5 +95,17 @@ namespace Cliente
             MostrarPedido  mostrarIncubadora = new MostrarPedido ();
             mostrarIncubadora.Show();
         }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NuevoGallo  Gallo = new NuevoGallo();
+            Gallo.Show();  
+        }
+
+        private void mostrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MostrarGallo  Gallo = new MostrarGallo();
+            Gallo.Show(); 
+        }
     }
 }

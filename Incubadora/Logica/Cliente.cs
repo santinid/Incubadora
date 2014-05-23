@@ -141,25 +141,25 @@ namespace Logica
             }
         }
         #endregion
-     
+
         #region ObternerLista
-        public  List<Cliente> ObtenerListado()
+        public List<Cliente> ObtenerListado()
         {
             List<Cliente> lista = new List<Cliente>();
             try
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT IdCliente, Nombre + ' ' + Apellido AS NombreCompleto FROM Cliente";
+                cmd.CommandText = "SELECT * FROM Cliente";
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 Cliente c;
                 while (dr.Read())
                 {
                     c = new Cliente();
-                    c.IdCliente = Convert.ToInt32(dr["IdCliente"].ToString());
-                    c.NombreCompleto = dr["NombreCompleto"].ToString();
-                  
+                    c.IdCliente  = Convert.ToInt32(dr["IdCliente"].ToString());
+                    c.Nombre  = dr["Nombre"].ToString();
+                    c.Apellido  = dr["Apellido"].ToString();
                     lista.Add(c);
                 }
                 BaseDatos.conn.Close();
@@ -177,15 +177,15 @@ namespace Logica
         #endregion
 
         #region ObternerListaPorNombre
-        public List<Cliente> ObtenerListadoNombreCliente()
+        public List<Cliente> ObtenerPorNombre(string nom)
         {
             List<Cliente> lista = new List<Cliente>();
             try
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT * FROM Cliente WHERE IdCliente = @IdCliente";
-                cmd.Parameters.AddWithValue("@IdCliente", this.IdCliente);
+                cmd.CommandText = "SELECT * FROM Cliente WHERE Nombre = @nom";
+                cmd.Parameters.AddWithValue("@nom", nom);
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 Cliente c;
@@ -195,6 +195,40 @@ namespace Logica
                     c.IdCliente = Convert.ToInt32(dr["IdCliente"].ToString());
                     c.Nombre = dr["Nombre"].ToString();
                     c.Apellido = dr["Apellido"].ToString();
+                    lista.Add(c);
+                }
+                BaseDatos.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                BaseDatos.conn.Close();
+            }
+            return lista;
+        }
+        #endregion
+
+        #region ObternerListaDeNombrecompleto
+        public List<Cliente> ObtenerListadoNombreCompleto()
+        {
+            List<Cliente> lista = new List<Cliente>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = BaseDatos.conn;
+                cmd.CommandText = "SELECT IdCliente, Cliente.Nombre + ' ' + Cliente.Apellido AS NombreCompleto FROM Cliente";
+                //cmd.Parameters.AddWithValue("@IdCliente", this.IdCliente);
+                BaseDatos.conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                Cliente c;
+                while (dr.Read())
+                {
+                    c = new Cliente();
+                    c.IdCliente = Convert.ToInt32(dr["IdCliente"].ToString());
+                    c.NombreCompleto = dr["NombreCompleto"].ToString();
                     lista.Add(c);
                 }
                 BaseDatos.conn.Close();

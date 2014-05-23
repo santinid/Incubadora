@@ -13,6 +13,7 @@ namespace Cliente
     {
         Logica.Cliente cliente = new Logica.Cliente();
         int id;
+        string nom;
         public MostrarCliente()
         {
             InitializeComponent();
@@ -20,8 +21,8 @@ namespace Cliente
 
         void llenargrid()
         {
-            dgvClientes.DataSource = cliente.ObtenerListado();
             
+            dgCliente.DataSource = cliente.ObtenerListado();
         }
         
         private void MostrarCliente_Load(object sender, EventArgs e)
@@ -55,13 +56,46 @@ namespace Cliente
           llenargrid();
         }
 
-        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgCliente_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            id = Convert.ToInt32(dgvClientes[0, dgvClientes.CurrentCell.RowIndex].Value.ToString());
-         txtNombre.Text = dgvClientes[2, dgvClientes.CurrentCell.RowIndex].Value.ToString();               txtApellido.Text = dgvClientes[1, dgvClientes.CurrentCell.RowIndex].Value.ToString();    
+            id = Convert.ToInt32(dgCliente[0, dgCliente.CurrentCell.RowIndex].Value.ToString());
+           txtNombre.Text = dgCliente[3, dgCliente.CurrentCell.RowIndex].Value.ToString();
+           txtApellido.Text = dgCliente[2, dgCliente.CurrentCell.RowIndex].Value.ToString();
+          
         }
 
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        
+             
+        void buscarPorplaca()
+            {
+            
+            try
+            {
+                nom = txtNombre.Text;
+                dgCliente.DataSource = cliente.ObtenerPorNombre(nom);
+            }
+            catch
+            {
+                
+
+            }
+        }
 
        
+        private void txtNombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buscarPorplaca();
+            }
+        }
+
+        } 
+    
     }
-}
+
