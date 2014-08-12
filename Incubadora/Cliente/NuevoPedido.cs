@@ -154,19 +154,63 @@ namespace Cliente
             {
                 Logica.Incubadora i = new Logica.Incubadora();
                 i.IdCliente = Convert.ToInt32(cmbCliente.SelectedValue);
-                i.CantidadHuevos = Convert.ToInt32(txtCantidadHuevos.Text);
-                i.TipoHuevo = cbTipoHuevo.Text;
+                if (txtCantidadHuevos.Text == "")
+                {
+                    MessageBox.Show("Ingrese la cantidad de huevos a incubar");
+                }
+                else
+                {
+                    i.CantidadHuevos = Convert.ToInt32(txtCantidadHuevos.Text);
+                }
+
+                if (cbTipoHuevo.Text == "Seleccionar")
+                {
+                    MessageBox.Show("Seleccione el tipo de huevo a incubar");
+                }
+                else
+                {
+                    i.TipoHuevo = cbTipoHuevo.Text;
+                }
                 i.FechaInicio = Convert.ToDateTime(txtFechaInicio.Text);
-                i.FechaFinal = Convert.ToDateTime(txtFechaFinal.Text);
-                i.Total = Convert.ToDouble(txtTotalPagar.Text);
-                i.IdNivel = Convert.ToInt32(cmbNivel.SelectedValue);
-                charola = charola + 1;
-                nivel.Charola = charola;
-                nivel.Modificar();
-                i.Agregar();
-                
-                MessageBox.Show("Registro Guardado");
-                limpear();
+                if (txtFechaFinal.Text == "")
+                {
+                    MessageBox.Show("Fecha no encontrada");
+                }
+                else
+                {
+                    i.FechaFinal = Convert.ToDateTime(txtFechaFinal.Text);
+                }
+
+                if (txtTotalPagar.Text == "")
+                {
+                    MessageBox.Show("Tipo de huevo no encontrado");
+                }
+                else
+                {
+                    i.Total = Convert.ToDouble(txtTotalPagar.Text);
+                }
+                    if (cmbNivel.Text == "0")
+                {
+                    MessageBox.Show("Seleccione un nivel adecuado");
+                }
+                else
+                {
+                    i.IdNivel = Convert.ToInt32(cmbNivel.SelectedValue);
+                }
+                    if (txtFechaInicio.Text == "" || txtFechaFinal.Text == "")
+                    {
+                        MessageBox.Show("Faltan campos por rellenar");
+                    }
+                    else
+                    {
+                        charola = charola + 1;
+                        nivel.Charola = charola;
+                        nivel.Modificar();
+                        i.Agregar();
+
+                        MessageBox.Show("Registro Guardado");
+                        limpear();
+                    }
             }
                 else 
                 {

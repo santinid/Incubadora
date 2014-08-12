@@ -14,6 +14,7 @@ namespace Cliente
         Logica.Incubadora incubadora = new Logica.Incubadora();
         Logica.Cliente Cliente = new Logica.Cliente();
         int filtrar;
+
         public MostrarPedido()
         {
             InitializeComponent();

@@ -336,6 +336,41 @@ namespace Logica
             return lista;
         }
         #endregion
+
+        //#region ventaPorCliente
+        //public List<Incubadora> ObtenerIdNivel()
+        //{
+        //    List<Incubadora> lista = new List<Incubadora>();
+        //    try
+        //    {
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.Connection = BaseDatos.conn;
+        //        cmd.CommandText = "SELECT  IdNivel, FechaFinal FROM Incubadora";
+        //        BaseDatos.conn.Open();
+        //        SqlDataReader dr = cmd.ExecuteReader();
+        //        Incubadora i;
+        //        while (dr.Read())
+        //        {
+        //            i = new Incubadora();
+
+        //            i.IdNivel = Convert.ToInt32(dr["IdNivel"].ToString());
+        //            i.FechaFinal = Convert.ToDateTime(dr["FechaFinal"].ToString());
+
+        //            lista.Add(i);
+        //        }
+        //        BaseDatos.conn.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        BaseDatos.conn.Close();
+        //    }
+        //    return lista;
+        //}
+        //#endregion
      
     }
 }

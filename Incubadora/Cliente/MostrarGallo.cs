@@ -6,13 +6,20 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Cliente
 {
     public partial class MostrarGallo : Form
     {
         Logica.ControlAnimal control = new Logica.ControlAnimal();
-        int placa;
+        string ruta;
+        string filtra;
+        Image newImage;
+        string obtenerFormato;
+
         public MostrarGallo()
         {
             InitializeComponent();
@@ -32,45 +39,136 @@ namespace Cliente
         {
             txtPlaca.Text = string.Empty;
             txtRaza.Text = string.Empty;
+            txtSexo.Text = string.Empty;
+            txtPlacaPadre.Text = string.Empty;
+            txtPlacaMadre.Text = string.Empty;
+            pbMostrar.Image = null;
+            txtObservaciones.Text = string.Empty;
+            llenarDatagrid();
         }
-
 
         private void dgvAnimales_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            txtPlaca.Text = dgvAnimales[0, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
-            txtRaza.Text = dgvAnimales[2, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
-            mcFechaNacido.SelectionEnd = Convert.ToDateTime(dgvAnimales[1, dgvAnimales.CurrentCell.RowIndex].Value.ToString()); 
+            txtPlaca.Text = dgvAnimales[2, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
+            txtRaza.Text = dgvAnimales[7, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
+            txtPlacaMadre.Text = dgvAnimales[0, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
+            txtPlacaPadre.Text = dgvAnimales[1, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
+            txtSexo.Text = dgvAnimales[5, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
+            mcFechaNacido.SelectionEnd = Convert.ToDateTime(dgvAnimales[3, dgvAnimales.CurrentCell.RowIndex].Value.ToString());
+            txtObservaciones.Text = dgvAnimales[4, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
+            ruta = dgvAnimales[6, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
+            if (ruta == "")
+            {
+                pbMostrar.Image = null;
+            }
+            else
+            {
+                var image = Image.FromFile(ruta);
+                pbMostrar.Image = image;
+            }
         }
-
+   
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            control.Placa = Convert.ToInt32(txtPlaca.Text);
+            control.Placa  = Convert.ToInt32(txtPlaca.Text);
             control.Raza = txtRaza.Text;
             control.FechaNacido = Convert.ToDateTime(mcFechaNacido.SelectionEnd.ToShortDateString());
-            control.Modificar();
+
+            SaveFileDialog GuardarArchivo = new SaveFileDialog();
+            GuardarArchivo.FileName = txtPlaca.Text;
+
+
+            obtenerFormato = dgvAnimales[6, dgvAnimales.CurrentCell.RowIndex].Value.ToString(); ;
+            for (int i = 0; i < obtenerFormato.Lenght; i++)
+            {
+                if (obtenerFormato.ToLower[i] == 'j')
+                {
+                    obtenerFormato = "jpg";
+                }
+                if (obtenerFormato.ToLower[i] == 'p')
+                {
+                    obtenerFormato = "png";
+                }
+                if (obtenerFormato.ToLower[i] == 'b')
+                {
+                    obtenerFormato = "bmp";
+                }
+            }
+            switch (obtenerFormato)
+            {
+                case "jpg":
+                    //if (File.Exists(@"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg"))
+                    //{
+                        //File.Replace(GuardarArchivo.FileName + ".jpg", @"C:\Imagenes\" , @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg ");
+                        //string OriginalFile = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
+                        //string FileToReplace = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
+                        //string BackUpOfFileToReplace = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
+                        //File.Replace(OriginalFile, FileToReplace, BackUpOfFileToReplace);
+                 
+                        //pbMostrar.Image.Save(@"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg", ImageFormat.Jpeg);
+
+                        //control.LugarFoto = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
+                    //}
+                    //else
+                    //{
+                        pbMostrar.Image.Save(@"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg", ImageFormat.Jpeg);
+                        control.LugarFoto = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
+                    //}
+
+                    break;
+                case "png":
+                    pbMostrar.Image.Save(@"C:\Imagenes\" + GuardarArchivo.FileName + ".png", ImageFormat.Png);
+                    control.LugarFoto = @"C:\Imagenes\" + GuardarArchivo.FileName + ".png";
+                    break;
+
+                case "bmp":
+                    pbMostrar.Image.Save(@"C:\Imagenes\" + GuardarArchivo.FileName + ".bmp", ImageFormat.Bmp);
+                    control.LugarFoto = @"C:\Imagenes\" + GuardarArchivo.FileName + ".bmp";
+                    break;
+            }
+
+            control.PlacaPadre = Convert.ToInt32(txtPlacaPadre.Text);
+            control.PlacaMadre = Convert.ToInt32(txtPlacaMadre.Text);
+            control.Observaciones = txtObservaciones.Text;
+            control.Sexo = txtSexo.Text;
+            control.Modificar() ;
             limpear();
             MessageBox.Show("Registro Modificado");
         }
 
-        void buscarPorplaca()
+        void BuscarAnimal()
         {
-            try
-            {
-                placa = Convert.ToInt32(txtPlaca.Text);
-                dgvAnimales.DataSource = control.ObtenerPorPlaca(placa);
-            }
-            catch
-            {
-
-            }
+            int valida = 0; 
+            
+               if (int.TryParse(txtBuscar.Text.Trim(), out valida)) 
+               {
+                   
+                   dgvAnimales.DataSource = control.ObtenerPorPlaca(valida);
+               }
+               else if (txtBuscar.Text == "") 
+               {
+                   dgvAnimales.DataSource = control.ObtenerListado();
+               }
+               else
+               {
+                   filtra = txtBuscar.Text.Trim();
+                   dgvAnimales.DataSource = control.ObtenerListaPorRaza(filtra);
+               }
         }
 
-        private void txtPlaca_KeyDown(object sender, KeyEventArgs e)
+        public static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                buscarPorplaca();
-            }
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
+
+            var ratio = Math.Min(ratioX, ratioY);
+
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
+
+            var newImage = new Bitmap(newWidth, newHeight);
+            Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
+            return newImage;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -78,10 +176,41 @@ namespace Cliente
             Close();
         }
 
+        private void txtBuscar_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            BuscarAnimal();
+        }
 
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog BuscarArchivo = new OpenFileDialog();
+            BuscarArchivo.Filter = "JPG|*.jpg|PNG|*.png|BMP|*.bmp";
+            BuscarArchivo.Title = "SELECCIONE EL TIPO DE IMAGEN";
 
-    
+            if (BuscarArchivo.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                ruta = BuscarArchivo.FileName;
+                var image = Image.FromFile(ruta);
+                newImage = ScaleImage(image, 300, 160);
+                pbMostrar.Image = newImage;
 
-        
+                switch (BuscarArchivo.FilterIndex)
+                {
+                    case 1:
+                        obtenerFormato = "jpg";
+                        break;
+
+                    case 2:
+                        obtenerFormato = "png";
+                        break;
+
+                    case 3:
+                        obtenerFormato = "bmp";
+                        break;
+                }
+
+            }
+        }
+
     }
 }

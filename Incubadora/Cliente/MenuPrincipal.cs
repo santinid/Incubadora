@@ -13,6 +13,7 @@ namespace Cliente
     {
         DateTime fechaparaValidar;
         DateTime fecha;
+        int validaMensaje = 0;
         int idn;
         int idi;
         int quitar = 0;
@@ -63,12 +64,16 @@ namespace Cliente
                     n.Modificar();
                     validar.Fechavalida = diahoy ;
                     validar.Modificar();
-                    MessageBox.Show("Bienvenido");
-                    MessageBox.Show("Hoy hay nuevos nacimientos");
+                    validaMensaje = 1;
+                    if (validaMensaje == 1)
+                    {
+                        MessageBox.Show("Bienvenido");
+                        MessageBox.Show("Hoy hay nuevos nacimientos");
+                    }
                     }
                 }       
               }
-               }
+               } validaMensaje = 0;
            
         }
     
