@@ -105,11 +105,11 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 23.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(190, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(280, 9);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(326, 35);
+            this.lblTitulo.Size = new System.Drawing.Size(201, 35);
             this.lblTitulo.TabIndex = 5;
-            this.lblTitulo.Text = "Agregar Nueva Placa";
+            this.lblTitulo.Text = "Nueva Placa";
             // 
             // txtPlaca
             // 

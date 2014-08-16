@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Diagnostics;
 
 namespace Cliente
 {
@@ -19,7 +20,7 @@ namespace Cliente
         string filtra;
         Image newImage;
         string obtenerFormato;
-
+        int validaF = 0;
         public MostrarGallo()
         {
             InitializeComponent();
@@ -70,6 +71,31 @@ namespace Cliente
    
         private void btnModificar_Click(object sender, EventArgs e)
         {
+            
+            if (validaF ==0)
+            {
+                if (txtPlaca .Text == "")
+                    {
+                        MessageBox.Show("Seleccione un registro");
+                    }
+                else
+                {
+                control.Placa = Convert.ToInt32(txtPlaca.Text);
+                control.Raza = txtRaza.Text;
+                control.FechaNacido = Convert.ToDateTime(mcFechaNacido.SelectionEnd.ToShortDateString());
+                control.PlacaPadre = Convert.ToInt32(txtPlacaPadre.Text);
+                control.PlacaMadre = Convert.ToInt32(txtPlacaMadre.Text);
+                control.Observaciones = txtObservaciones.Text;
+                control.Sexo = txtSexo.Text;
+                control.ModificarSinFoto ();
+                limpear();
+                MessageBox.Show("Registro Modificado");
+                }
+            }
+            else
+            {
+                
+           
             control.Placa  = Convert.ToInt32(txtPlaca.Text);
             control.Raza = txtRaza.Text;
             control.FechaNacido = Convert.ToDateTime(mcFechaNacido.SelectionEnd.ToShortDateString());
@@ -77,44 +103,11 @@ namespace Cliente
             SaveFileDialog GuardarArchivo = new SaveFileDialog();
             GuardarArchivo.FileName = txtPlaca.Text;
 
-
-            obtenerFormato = dgvAnimales[6, dgvAnimales.CurrentCell.RowIndex].Value.ToString(); ;
-            for (int i = 0; i < obtenerFormato.Lenght; i++)
-            {
-                if (obtenerFormato.ToLower[i] == 'j')
-                {
-                    obtenerFormato = "jpg";
-                }
-                if (obtenerFormato.ToLower[i] == 'p')
-                {
-                    obtenerFormato = "png";
-                }
-                if (obtenerFormato.ToLower[i] == 'b')
-                {
-                    obtenerFormato = "bmp";
-                }
-            }
             switch (obtenerFormato)
             {
                 case "jpg":
-                    //if (File.Exists(@"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg"))
-                    //{
-                        //File.Replace(GuardarArchivo.FileName + ".jpg", @"C:\Imagenes\" , @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg ");
-                        //string OriginalFile = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
-                        //string FileToReplace = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
-                        //string BackUpOfFileToReplace = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
-                        //File.Replace(OriginalFile, FileToReplace, BackUpOfFileToReplace);
-                 
-                        //pbMostrar.Image.Save(@"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg", ImageFormat.Jpeg);
-
-                        //control.LugarFoto = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
-                    //}
-                    //else
-                    //{
                         pbMostrar.Image.Save(@"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg", ImageFormat.Jpeg);
                         control.LugarFoto = @"C:\Imagenes\" + GuardarArchivo.FileName + ".jpg";
-                    //}
-
                     break;
                 case "png":
                     pbMostrar.Image.Save(@"C:\Imagenes\" + GuardarArchivo.FileName + ".png", ImageFormat.Png);
@@ -134,6 +127,8 @@ namespace Cliente
             control.Modificar() ;
             limpear();
             MessageBox.Show("Registro Modificado");
+            validaF = 0;
+            }
         }
 
         void BuscarAnimal()
@@ -183,6 +178,12 @@ namespace Cliente
 
         private void btnAgregarImagen_Click(object sender, EventArgs e)
         {
+            validaF = 1;
+            // Referenciamos el objeto Image del control
+            Image img = pbMostrar .Image;
+            // Destruyo la posible imagen existente en el control
+            if (img != null) { img.Dispose(); }
+
             OpenFileDialog BuscarArchivo = new OpenFileDialog();
             BuscarArchivo.Filter = "JPG|*.jpg|PNG|*.png|BMP|*.bmp";
             BuscarArchivo.Title = "SELECCIONE EL TIPO DE IMAGEN";

@@ -126,6 +126,36 @@ namespace Logica
         }
         #endregion
 
+        #region ModificarSinFo
+        public void ModificarSinFoto()
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = BaseDatos.conn;
+                cmd.CommandText = "UPDATE ControlAnimal SET Raza=@Raza ,FechaNacido=@FechaNacido,  PlacaPadre = @PlacaPadre, PlacaMadre = @PlacaMadre, Observacion = @Observacion, Sexo =  @Sexo WHERE Placa=@Placa";
+                cmd.Parameters.AddWithValue("@Placa", this.Placa);
+                cmd.Parameters.AddWithValue("@Raza", this.Raza);
+                cmd.Parameters.AddWithValue("@FechaNacido", this.FechaNacido);
+                cmd.Parameters.AddWithValue("@PlacaPadre", this.PlacaPadre);
+                cmd.Parameters.AddWithValue("@PlacaMadre", this.PlacaMadre);
+                cmd.Parameters.AddWithValue("@Observacion", this.Observaciones);
+                cmd.Parameters.AddWithValue("@Sexo", this.Sexo);
+                BaseDatos.conn.Open();
+                cmd.ExecuteNonQuery();
+                BaseDatos.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                BaseDatos.conn.Close();
+            }
+        }
+        #endregion
+
         #region Eliminar
         public void Eliminar()
         {

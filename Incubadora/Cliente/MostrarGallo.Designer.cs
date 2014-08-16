@@ -51,13 +51,13 @@
             this.txtSexo = new System.Windows.Forms.TextBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.lblObservaciones = new System.Windows.Forms.Label();
-            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregarImagen = new System.Windows.Forms.Button();
             this.lblFoto = new System.Windows.Forms.Label();
             this.BuscarArchivo = new System.Windows.Forms.OpenFileDialog();
             this.GuardarArchivo = new System.Windows.Forms.SaveFileDialog();
+            this.Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAnimales)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMostrar)).BeginInit();
             this.SuspendLayout();
@@ -270,27 +270,6 @@
             this.lblObservaciones.TabIndex = 29;
             this.lblObservaciones.Text = "Observaciones";
             // 
-            // Placa
-            // 
-            this.Placa.DataPropertyName = "Placa";
-            this.Placa.HeaderText = "Placa Del Anumal";
-            this.Placa.Name = "Placa";
-            this.Placa.ReadOnly = true;
-            // 
-            // Raza
-            // 
-            this.Raza.DataPropertyName = "Raza";
-            this.Raza.HeaderText = "Raza";
-            this.Raza.Name = "Raza";
-            this.Raza.ReadOnly = true;
-            // 
-            // Sexo
-            // 
-            this.Sexo.DataPropertyName = "Sexo";
-            this.Sexo.HeaderText = "Sexo";
-            this.Sexo.Name = "Sexo";
-            this.Sexo.ReadOnly = true;
-            // 
             // btnAgregarImagen
             // 
             this.btnAgregarImagen.Location = new System.Drawing.Point(669, 617);
@@ -314,6 +293,27 @@
             // BuscarArchivo
             // 
             this.BuscarArchivo.FileName = "openFileDialog1";
+            // 
+            // Placa
+            // 
+            this.Placa.DataPropertyName = "Placa";
+            this.Placa.HeaderText = "Placa Del Animal";
+            this.Placa.Name = "Placa";
+            this.Placa.ReadOnly = true;
+            // 
+            // Raza
+            // 
+            this.Raza.DataPropertyName = "Raza";
+            this.Raza.HeaderText = "Raza";
+            this.Raza.Name = "Raza";
+            this.Raza.ReadOnly = true;
+            // 
+            // Sexo
+            // 
+            this.Sexo.DataPropertyName = "Sexo";
+            this.Sexo.HeaderText = "Sexo";
+            this.Sexo.Name = "Sexo";
+            this.Sexo.ReadOnly = true;
             // 
             // MostrarGallo
             // 
@@ -380,12 +380,12 @@
         private System.Windows.Forms.TextBox txtSexo;
         private System.Windows.Forms.TextBox txtObservaciones;
         private System.Windows.Forms.Label lblObservaciones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Placa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Raza;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sexo;
         private System.Windows.Forms.Button btnAgregarImagen;
         private System.Windows.Forms.Label lblFoto;
         private System.Windows.Forms.OpenFileDialog BuscarArchivo;
         private System.Windows.Forms.SaveFileDialog GuardarArchivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Placa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Raza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sexo;
     }
 }

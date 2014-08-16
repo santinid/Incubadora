@@ -56,15 +56,17 @@ namespace Cliente
                     {
                         MessageBox.Show("Ya Existe esa placa");
                         limpear();
+                        Refresh(); 
                         break;
                     }
+                
                     else
                     {
                         Control.Placa = Convert.ToInt32(txtPlaca.Text);
                        
                     }
 
-                    //Valida El Tipo de Raza
+                     //Valida El Tipo de Raza
                     if (txtRaza.Text == "")
                     {
                         MessageBox.Show("Falta Raza Del Animal");
@@ -87,7 +89,6 @@ namespace Cliente
                     //Guarda La Imagen
                     SaveFileDialog GuardarArchivo = new SaveFileDialog();
                     GuardarArchivo.FileName = txtPlaca.Text;
-
 
                     //Valida Si No Puso Imagen
                     if (string.IsNullOrEmpty(ruta))
@@ -161,7 +162,7 @@ namespace Cliente
                     if (txtPlaca.Text == "" || txtRaza.Text == "" || cbSexo.Text == "Seleccionar")
                     {
                         MessageBox.Show("Faltan campos por rellenar");
-                        break;
+                        
                     }
 
                     //Guarda El Registro    
