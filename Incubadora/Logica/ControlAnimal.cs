@@ -401,5 +401,39 @@ namespace Logica
             return lista;
         }
         #endregion
+
+        #region ValidaPla
+        public List<ControlAnimal> ValidaPla(int pla)
+        {
+            List<ControlAnimal> lista = new List<ControlAnimal>();
+            try
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = BaseDatos.conn;
+                cmd.CommandText = "SELECT Placa FROM ControlAnimal WHERE Placa = @Pla";
+                cmd.Parameters.AddWithValue("@Pla", pla);
+                BaseDatos.conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                ControlAnimal c;
+                while (dr.Read())
+                {
+                    c = new ControlAnimal();
+                    c.Placa = Convert.ToInt32(dr["Placa"].ToString());
+
+                    lista.Add(c);
+                }
+                BaseDatos.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                BaseDatos.conn.Close();
+            }
+            return lista;
+        }
+        #endregion
     }
 }

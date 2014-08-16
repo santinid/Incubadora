@@ -28,9 +28,12 @@ namespace Cliente
             txtPlaca.Text = string.Empty;
             txtRaza.Text = string.Empty;
             pbImagen.Image  = null;
+          
+           
             txtObservaciones.Text = string.Empty;
             txtPlacaMadre.Text = string.Empty;
             txtPlacaMadre.Text = string.Empty;
+            Refresh();
 
         }
 
@@ -59,17 +62,25 @@ namespace Cliente
                         Refresh(); 
                         break;
                     }
-                
-                    else
-                    {
-                        Control.Placa = Convert.ToInt32(txtPlaca.Text);
-                       
-                    }
+                 continue;
+                   
+                }
+                //Valida El Tipo de Raza
+                if (txtPlaca.Text == "")
+                {
+                   
 
+                }
+                else
+                {
+                    Control.Placa  = Convert.ToInt32(txtPlaca.Text);
+                }
+                
                      //Valida El Tipo de Raza
                     if (txtRaza.Text == "")
                     {
                         MessageBox.Show("Falta Raza Del Animal");
+                       
                     }
                     else
                     {
@@ -80,6 +91,7 @@ namespace Cliente
                     if (Convert.ToString(mcFechaNacido.SelectionEnd) == "")
                     {
                         MessageBox.Show("No Selecciono Ninguna Fecha");
+                       
                     }
                     else
                     {
@@ -91,7 +103,7 @@ namespace Cliente
                     GuardarArchivo.FileName = txtPlaca.Text;
 
                     //Valida Si No Puso Imagen
-                    if (string.IsNullOrEmpty(ruta))
+                    if (string.IsNullOrEmpty(ruta) || txtPlaca.Text == "" )
                     {
 
                         Control.LugarFoto = " ";
@@ -122,6 +134,7 @@ namespace Cliente
                     if (cbSexo.Text == "Seleccionar")
                     {
                         MessageBox.Show("Seleccione el sexo del animal");
+                       
                     }
                     else
                     {
@@ -162,6 +175,7 @@ namespace Cliente
                     if (txtPlaca.Text == "" || txtRaza.Text == "" || cbSexo.Text == "Seleccionar")
                     {
                         MessageBox.Show("Faltan campos por rellenar");
+                      
                         
                     }
 
@@ -171,9 +185,9 @@ namespace Cliente
                         Control.Agregar();
                         limpear();
                         MessageBox.Show("Registro Guardado");
-                        break;
+                        
                     }
-                }
+                
               
             }
            
@@ -283,6 +297,11 @@ namespace Cliente
             {
                 e.Handled = true;
             }
+        }
+
+        private void NuevoGallo_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

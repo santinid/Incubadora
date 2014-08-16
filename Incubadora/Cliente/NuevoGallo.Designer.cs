@@ -296,6 +296,7 @@
             this.Name = "NuevoGallo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Emplacado";
+            this.Load += new System.EventHandler(this.NuevoGallo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
