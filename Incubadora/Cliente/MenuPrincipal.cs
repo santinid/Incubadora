@@ -112,5 +112,17 @@ namespace Cliente
             MostrarGallo  Gallo = new MostrarGallo();
             Gallo.Show(); 
         }
+
+        private void nuevaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NuevaMarca  Marca = new NuevaMarca ();
+            Marca.Show(); 
+        }
+
+        private void mostrarToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            MostrarMarcas MMarca = new MostrarMarcas();
+            MMarca.Show();
+        }
     }
 }

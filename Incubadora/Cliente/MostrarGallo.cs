@@ -58,7 +58,7 @@ namespace Cliente
             mcFechaNacido.SelectionEnd = Convert.ToDateTime(dgvAnimales[3, dgvAnimales.CurrentCell.RowIndex].Value.ToString());
             txtObservaciones.Text = dgvAnimales[4, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
             ruta = dgvAnimales[6, dgvAnimales.CurrentCell.RowIndex].Value.ToString();
-            if (ruta == "")
+            if (ruta == " ")
             {
                 pbMostrar.Image = null;
             }

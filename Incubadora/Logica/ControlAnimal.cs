@@ -224,7 +224,7 @@ namespace Logica
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT * FROM ControlAnimal";
+                cmd.CommandText = "SELECT * FROM ControlAnimal order by Placa";
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
                 ControlAnimal c;
@@ -263,7 +263,7 @@ namespace Logica
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
-                cmd.CommandText = "SELECT * FROM ControlAnimal WHERE Placa = @Pla";
+                cmd.CommandText = "SELECT * FROM ControlAnimal WHERE Placa = @Pla Order By Placa";
                 cmd.Parameters.AddWithValue("@Pla", pla);
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -304,7 +304,7 @@ namespace Logica
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = BaseDatos.conn;
                 //cmd.CommandText = "SELECT * FROM Controlanimal where Raza like '@Raz+%'";
-                cmd.CommandText = "SELECT * FROM Controlanimal where Raza LIKE '" + raz + "%'";
+                cmd.CommandText = "SELECT * FROM Controlanimal where Raza LIKE '" + raz + "%' ORDER BY Placa";
                 cmd.Parameters.AddWithValue("@Raz", raz);
                 BaseDatos.conn.Open();
                 SqlDataReader dr = cmd.ExecuteReader();

@@ -39,6 +39,9 @@
             this.controlAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mostrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.marcaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mostrarToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -49,7 +52,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.incubadoraToolStripMenuItem,
             this.clienteToolStripMenuItem,
-            this.controlAnimalToolStripMenuItem});
+            this.controlAnimalToolStripMenuItem,
+            this.marcaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(472, 24);
@@ -114,16 +118,39 @@
             // nuevoToolStripMenuItem
             // 
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.nuevoToolStripMenuItem.Text = "Nuevo";
             this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // mostrarToolStripMenuItem
             // 
             this.mostrarToolStripMenuItem.Name = "mostrarToolStripMenuItem";
-            this.mostrarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mostrarToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.mostrarToolStripMenuItem.Text = "Mostrar";
             this.mostrarToolStripMenuItem.Click += new System.EventHandler(this.mostrarToolStripMenuItem_Click);
+            // 
+            // marcaToolStripMenuItem
+            // 
+            this.marcaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevaToolStripMenuItem,
+            this.mostrarToolStripMenuItem3});
+            this.marcaToolStripMenuItem.Name = "marcaToolStripMenuItem";
+            this.marcaToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.marcaToolStripMenuItem.Text = "Marca";
+            // 
+            // nuevaToolStripMenuItem
+            // 
+            this.nuevaToolStripMenuItem.Name = "nuevaToolStripMenuItem";
+            this.nuevaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevaToolStripMenuItem.Text = "Nueva";
+            this.nuevaToolStripMenuItem.Click += new System.EventHandler(this.nuevaToolStripMenuItem_Click);
+            // 
+            // mostrarToolStripMenuItem3
+            // 
+            this.mostrarToolStripMenuItem3.Name = "mostrarToolStripMenuItem3";
+            this.mostrarToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.mostrarToolStripMenuItem3.Text = "Mostrar";
+            this.mostrarToolStripMenuItem3.Click += new System.EventHandler(this.mostrarToolStripMenuItem3_Click);
             // 
             // pictureBox1
             // 
@@ -168,5 +195,8 @@
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mostrarToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem marcaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mostrarToolStripMenuItem3;
     }
 }

@@ -120,6 +120,12 @@
     <Compile Include="MostrarGallo.Designer.cs">
       <DependentUpon>MostrarGallo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MostrarMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MostrarMarcas.Designer.cs">
+      <DependentUpon>MostrarMarcas.cs</DependentUpon>
+    </Compile>
     <Compile Include="MostrarPagos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,12 @@
     </Compile>
     <Compile Include="MostrarPedido.Designer.cs">
       <DependentUpon>MostrarPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NuevaMarca.Designer.cs">
+      <DependentUpon>NuevaMarca.cs</DependentUpon>
     </Compile>
     <Compile Include="NuevoCliente.cs">
       <SubType>Form</SubType>
@@ -164,6 +176,9 @@
       <DependentUpon>MostrarGallo.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="MostrarMarcas.resx">
+      <DependentUpon>MostrarMarcas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MostrarPagos.resx">
       <DependentUpon>MostrarPagos.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -171,6 +186,9 @@
     <EmbeddedResource Include="MostrarPedido.resx">
       <DependentUpon>MostrarPedido.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NuevaMarca.resx">
+      <DependentUpon>NuevaMarca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NuevoCliente.resx">
       <DependentUpon>NuevoCliente.cs</DependentUpon>
@@ -207,9 +225,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icono.ico" />
+    <Content Include="Imagenes\Der.png" />
     <Content Include="Imagenes\icono.ico" />
     <Content Include="Imagenes\Logo.jpg" />
     <Content Include="Imagenes\Pollo.jpg" />
+    <None Include="Imagenes\Izq.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logica\Logica.csproj">
@@ -228,6 +248,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

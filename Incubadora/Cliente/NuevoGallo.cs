@@ -175,9 +175,7 @@ namespace Cliente
                     if (txtPlaca.Text == "" || txtRaza.Text == "" || cbSexo.Text == "Seleccionar")
                     {
                         MessageBox.Show("Faltan campos por rellenar");
-                      
-                        
-                    }
+                   }
 
                     //Guarda El Registro    
                     else
